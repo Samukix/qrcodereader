@@ -13,7 +13,6 @@ void main() {
 class QRcode extends StatelessWidget {
   const QRcode({super.key});
 
-  //barra de cima
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,7 +33,6 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-//essa parte abre o scanner.
 class _MyHomePageState extends State<MyHomePage> {
   void _openQRScanner() {
     Navigator.push(
@@ -44,7 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  // tela inicial e botao de iniciar o qr code
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +88,6 @@ class _QRViewExampleState extends State<QRViewExample> {
     }
   }
 
-  //tela de leitura do QR code
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,7 +161,6 @@ class _QRViewExampleState extends State<QRViewExample> {
     );
   }
 
-  //essa e a parte que ele le o que ta dentro do qr code, com condicional de link tbm
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) async {
@@ -181,6 +176,7 @@ class _QRViewExampleState extends State<QRViewExample> {
             builder: (context) => ResultPage(qrData: result!.code!),
           ),
         );
+        await controller.resumeCamera();
       }
     });
   }
